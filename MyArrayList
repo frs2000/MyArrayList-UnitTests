@@ -1,0 +1,62 @@
+package myArrList;
+
+public class MyArrayList<E>  {
+    private E[] list ;
+
+    public MyArrayList()    {
+        list = (E[])new Object[1];
+    }
+
+    public E get(int index) {
+        if (list[index] == null) return null ;
+        if (index == 0) return list[index];
+        if (list.length <index) {
+            throw new IndexOutOfBoundsException(String.valueOf(index));
+        }
+        else return list[index];
+    }
+
+    public void add(E elem) {
+        for (int a = 0; a < list.length; a++){
+            if (list[a] == null) {
+                list[a] = elem;
+                return;
+            }
+        }
+        E[] listTemp =  (E[]) new Object [list.length+1];
+        for (int c = 0; c<list.length ; c++){
+            listTemp[c] = list[c];
+            }
+        list = null ;
+        list = (E[]) new Object [listTemp.length] ;
+        for (int b = 0 ; b<list.length ; b++){
+            if (listTemp[b] != null) {
+                list[b] = listTemp[b];
+            }
+            if (listTemp[b] == null) {
+                list[b] = elem;
+                listTemp = null ;
+                return;
+            }
+        }
+    }
+
+    public void set(int index, E elem) {
+        if (list.length <index || index < 0 ) {
+            throw new IndexOutOfBoundsException();
+        }
+        else {
+            list[index] = elem;
+        }
+    }
+
+
+    public void remove(int index) {
+        if (list.length <index || index < 0) throw new IndexOutOfBoundsException();
+        else list[index] = null;
+    }
+
+    public Integer length(){                
+        return list.length ;
+    }
+}
