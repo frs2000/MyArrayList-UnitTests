@@ -1,0 +1,106 @@
+package myArrList;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
+public class MyArrayListUtilTestJunit {
+    private MyArrayList<Integer> myArrayList;
+
+    @Before
+    public void setUp() throws Exception {
+        myArrayList = new MyArrayList<>();
+    }
+
+    //===================length=====================
+    @Test
+    public void testLengthNothing() {
+        Integer actual = myArrayList.length();
+        assertEquals(Integer.valueOf(1), actual);
+    }
+
+    @Test
+    public void testLengthOneIndex() {
+        myArrayList.add(111);
+        Integer actual = myArrayList.length();
+        assertEquals(Integer.valueOf(1), actual);
+    }
+
+    @Test
+    public void testLengthTwoIndex() {
+        myArrayList.add(111);
+        myArrayList.add(222);
+        Integer actual = myArrayList.length();
+        assertEquals(Integer.valueOf(2), actual);
+    }
+
+
+    //===========================ADD=======================
+    @Test
+    public void testAddOneFirstIndex(){
+        myArrayList.add(1);
+        int actual = myArrayList.length();
+        assertEquals(1 , actual);
+    }
+
+    @Test
+    public void testAddTwoFirstIndex(){
+        myArrayList.add(1);
+        myArrayList.add(2);
+        int actual = myArrayList.length();
+        assertEquals(2 , actual);
+    }
+
+    @Test
+    public void testAddSomeNumbersToList(){
+        int i = 10 ; //write number of elements
+        for (int a = 0 ; a<i ; a++){
+            myArrayList.add(a);
+        }
+        int actual = myArrayList.length();
+        assertEquals(i , actual);
+    }
+
+    //=================================get ======================
+    @Test
+    public void testGetFirstEmptyIndex(){
+        assertEquals( null, myArrayList.get(0));
+    }
+
+    @Test
+    public void testGetFirstNotEmptyIndex(){
+        int i = 222 ;
+        myArrayList.add(i);
+        Integer actual = myArrayList.get(0);
+        assertEquals(Integer.valueOf(i),actual );
+    }
+
+    //=================================remove =====================
+    @Test
+    public void testRemoveSomeIndex(){
+        myArrayList.add(1);
+        myArrayList.add(2);
+        int i = 0 ;
+        myArrayList.remove(i);
+        assertEquals(null , myArrayList.get(i) );
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testRemoveSomeIndexException(){
+        myArrayList.add(1);
+        myArrayList.add(2);
+        int i = -1 ;
+        myArrayList.remove(i);
+    }
+
+    //=================================set ==========================
+    @Test
+    public void testSetOneParameter(){
+        myArrayList.add(1);
+        myArrayList.add(2);
+        myArrayList.set(0, 333);
+        assertEquals(Integer.valueOf(333), myArrayList.get(0));
+    }
+
+}
